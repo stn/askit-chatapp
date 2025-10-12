@@ -179,13 +179,13 @@
         >
           {#each messageFeed as bubble}
             {#if bubble.host === true}
-              <div class="flex flex-row items-start gap-2">
+              <div class="flex flex-row-reverse items-start gap-2">
                 <Avatar
                   src="https://i.pravatar.cc/?img={bubble.avatar}"
                   name={bubble.name}
                   size="size-12"
                 />
-                <div class="flex-1 flex justify-start">
+                <div class="flex-1 flex justify-end">
                   <div class="card p-4 preset-tonal rounded-tl-none space-y-2">
                     <header class="flex justify-between items-center">
                       <p class="font-bold">{bubble.name}</p>
@@ -194,16 +194,15 @@
                     <p>{bubble.message}</p>
                   </div>
                 </div>
-                <!-- <div class="flex-grow" /> -->
               </div>
             {:else}
-              <div class="flex flex-row-reverse items-start gap-2">
+              <div class="flex flex-row items-start gap-2">
                 <Avatar
                   src="https://i.pravatar.cc/?img={bubble.avatar}"
                   name={bubble.name}
                   size="size-12"
                 />
-                <div class="flex-1 flex justify-end">
+                <div class="flex-1 flex justify-start">
                   <div class="card p-4 rounded-tr-none space-y-2 {bubble.color}">
                     <header class="flex justify-between items-center">
                       <p class="font-bold">{bubble.name}</p>
@@ -212,7 +211,6 @@
                     <p>{bubble.message}</p>
                   </div>
                 </div>
-                <!-- <div class="flex-grow" /> -->
               </div>
             {/if}
           {/each}

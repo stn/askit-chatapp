@@ -5,6 +5,7 @@
   import "../app.css";
 
   import { invoke } from "@tauri-apps/api/core";
+  import { writeBoard } from "tauri-plugin-askit-api";
 
   // Types
   interface Person {
@@ -104,6 +105,8 @@
     messageFeed = [...messageFeed, newMessage];
     // Clear prompt
     currentMessage = "";
+    // Write to board
+    writeBoard("chat", currentMessage);
     // Smooth scroll to bottom
     // Timeout prevents race condition
     setTimeout(() => scrollChatBottom("smooth"), 0);

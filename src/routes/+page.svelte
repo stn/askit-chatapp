@@ -171,7 +171,7 @@
         <!-- <footer class="border-t-[1px] border-surface-200-800 p-4">(footer)</footer> -->
       </div>
       <!-- Chat -->
-      <div class="grid grid-row-[1fr_auto]">
+      <div class="grid grid-rows-[1fr_auto]">
         <!-- Conversation -->
         <section
           bind:this={elemChat}
@@ -179,28 +179,34 @@
         >
           {#each messageFeed as bubble}
             {#if bubble.host === true}
-              <div class="grid grid-cols-[auto_1fr] gap-2">
+              <div class="flex items-start gap-2">
                 <Avatar
                   src="https://i.pravatar.cc/?img={bubble.avatar}"
                   name={bubble.name}
                   size="size-12"
                 />
-                <div class="card p-4 preset-tonal rounded-tl-none space-y-2">
-                  <header class="flex justify-between items-center">
-                    <p class="font-bold">{bubble.name}</p>
-                    <small class="opacity-50">{bubble.timestamp}</small>
-                  </header>
-                  <p>{bubble.message}</p>
+                <div class="flex-1 flex justify-start">
+                  <div class="card p-4 preset-tonal rounded-tl-none space-y-2 w-auto ">
+                    <header class="flex justify-between items-center">
+                      <p class="font-bold">{bubble.name}</p>
+                      <small class="opacity-50">{bubble.timestamp}</small>
+                    </header>
+                    <p>{bubble.message}</p>
+                  </div>
+                  <div class="flex-grow" />
                 </div>
               </div>
             {:else}
-              <div class="grid grid-cols-[1fr_auto] gap-2">
-                <div class="card p-4 rounded-tr-none space-y-2 {bubble.color}">
-                  <header class="flex justify-between items-center">
-                    <p class="font-bold">{bubble.name}</p>
-                    <small class="opacity-50">{bubble.timestamp}</small>
-                  </header>
-                  <p>{bubble.message}</p>
+              <div class="flex items-start justify-end gap-2">
+                <div class="flex justify-end flex-1">
+                  <div class="flex-grow" />
+                  <div class="card p-4 rounded-tr-none space-y-2 w-auto {bubble.color}">
+                    <header class="flex justify-between items-center">
+                      <p class="font-bold">{bubble.name}</p>
+                      <small class="opacity-50">{bubble.timestamp}</small>
+                    </header>
+                    <p>{bubble.message}</p>
+                  </div>
                 </div>
                 <Avatar
                   src="https://i.pravatar.cc/?img={bubble.avatar}"

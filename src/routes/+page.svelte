@@ -131,12 +131,12 @@
   // }
 </script>
 
-<main class="container w-full h-full">
-  <section class="bg-surface-100-900 w-full h-full overflow-hidden">
-    <div class="chat w-full h-full grid grid-cols-1 lg:grid-cols-[auto_1fr]">
+<main class="container w-screen h-screen">
+  <section class="w-screen h-screen">
+    <div class="chat w-screen h-screen flex flex-row">
       <!-- Navigation -->
       <div
-        class="hidden lg:grid grid-rows-[auto_1fr_auto] border-r-[1px] border-surface-200-800"
+        class="hidden flex-none lg:grid grid-rows-[auto_1fr_auto] border-r-[1px] border-surface-200-800"
       >
         <!-- Header -->
         <header class="border-b-[1px] border-surface-200-800 p-4">
@@ -145,7 +145,7 @@
         <!-- List -->
         <div class="p-4 space-y-4 overflow-y-auto">
           <small class="opacity-50">Contacts</small>
-          <div class="flex flex-col space-y-1">
+          <div class="space-y-1">
             {#each people as person}
               <button
                 type="button"
@@ -171,48 +171,48 @@
         <!-- <footer class="border-t-[1px] border-surface-200-800 p-4">(footer)</footer> -->
       </div>
       <!-- Chat -->
-      <div class="grid grid-rows-[1fr_auto]">
+      <div class="flex-auto grid grid-rows-[1fr_auto]">
         <!-- Conversation -->
         <section
           bind:this={elemChat}
-          class="p-4 overflow-y-auto space-y-4 w-full"
+          class="p-4 overflow-y-auto space-y-4 w-full h-full"
         >
           {#each messageFeed as bubble}
             {#if bubble.host === true}
-              <div class="flex items-start gap-2">
+              <div class="flex flex-row items-start gap-2">
                 <Avatar
                   src="https://i.pravatar.cc/?img={bubble.avatar}"
                   name={bubble.name}
                   size="size-12"
                 />
                 <div class="flex-1 flex justify-start">
-                  <div class="card p-4 preset-tonal rounded-tl-none space-y-2 w-auto ">
+                  <div class="card p-4 preset-tonal rounded-tl-none space-y-2">
                     <header class="flex justify-between items-center">
                       <p class="font-bold">{bubble.name}</p>
                       <small class="opacity-50">{bubble.timestamp}</small>
                     </header>
                     <p>{bubble.message}</p>
                   </div>
-                  <div class="flex-grow" />
                 </div>
+                <!-- <div class="flex-grow" /> -->
               </div>
             {:else}
-              <div class="flex items-start justify-end gap-2">
-                <div class="flex justify-end flex-1">
-                  <div class="flex-grow" />
-                  <div class="card p-4 rounded-tr-none space-y-2 w-auto {bubble.color}">
-                    <header class="flex justify-between items-center">
-                      <p class="font-bold">{bubble.name}</p>
-                      <small class="opacity-50">{bubble.timestamp}</small>
-                    </header>
-                    <p>{bubble.message}</p>
-                  </div>
-                </div>
+              <div class="flex flex-row-reverse items-start gap-2">
                 <Avatar
                   src="https://i.pravatar.cc/?img={bubble.avatar}"
                   name={bubble.name}
                   size="size-12"
                 />
+                <div class="flex-1 flex justify-end">
+                  <div class="card p-4 rounded-tr-none space-y-2 {bubble.color}">
+                    <header class="flex justify-between items-center">
+                      <p class="font-bold">{bubble.name}</p>
+                      <small class="opacity-50">{bubble.timestamp}</small>
+                    </header>
+                    <p>{bubble.message}</p>
+                  </div>
+                </div>
+                <!-- <div class="flex-grow" /> -->
               </div>
             {/if}
           {/each}

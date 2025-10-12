@@ -1,157 +1,242 @@
 <script lang="ts">
-  import { invoke } from "@tauri-apps/api/core";
+  import IconSend from "@lucide/svelte/icons/send-horizontal";
+  import { Avatar } from "@skeletonlabs/skeleton-svelte";
+  import { onMount } from "svelte";
   import "../app.css";
 
-  let name = $state("");
-  let greetMsg = $state("");
+  import { invoke } from "@tauri-apps/api/core";
 
-  async function greet(event: Event) {
-    event.preventDefault();
-    // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-    greetMsg = await invoke("greet", { name });
+  // Types
+  interface Person {
+    id: number;
+    avatar: number;
+    name: string;
   }
+  interface MessageFeed {
+    id: number;
+    host: boolean;
+    avatar: number;
+    name: string;
+    timestamp: string;
+    message: string;
+    color: string;
+  }
+
+  let elemChat: HTMLElement;
+  const lorem =
+    "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident blanditiis quidem dolorum ab similique. Voluptatibus quibusdam unde mollitia corrupti assumenda libero. Quibusdam culpa illum unde asperiores accusantium! Unde, cupiditate tenetur.";
+
+  // Navigation List
+  const people: Person[] = [
+    { id: 0, avatar: 14, name: "Michael" },
+    { id: 1, avatar: 40, name: "Janet" },
+    { id: 2, avatar: 31, name: "Susan" },
+    { id: 3, avatar: 56, name: "Joey" },
+    { id: 4, avatar: 24, name: "Lara" },
+    { id: 5, avatar: 9, name: "Melissa" },
+  ];
+  let currentPersonId: number = people[0].id;
+
+  // Messages
+  let messageFeed: MessageFeed[] = [
+    {
+      id: 0,
+      host: true,
+      avatar: 48,
+      name: "Jane",
+      timestamp: "Yesterday @ 2:30pm",
+      message: lorem,
+      color: "preset-tonal-primary",
+    },
+    {
+      id: 1,
+      host: false,
+      avatar: 14,
+      name: "Michael",
+      timestamp: "Yesterday @ 2:45pm",
+      message: lorem,
+      color: "preset-tonal-primary",
+    },
+    {
+      id: 2,
+      host: true,
+      avatar: 48,
+      name: "Jane",
+      timestamp: "Yesterday @ 2:50pm",
+      message: lorem,
+      color: "preset-tonal-primary",
+    },
+    {
+      id: 3,
+      host: false,
+      avatar: 14,
+      name: "Michael",
+      timestamp: "Yesterday @ 2:52pm",
+      message: lorem,
+      color: "preset-tonal-primary",
+    },
+  ];
+  let currentMessage = "";
+
+  function scrollChatBottom(behavior?: "auto" | "instant" | "smooth") {
+    elemChat.scrollTo({ top: elemChat.scrollHeight, behavior });
+  }
+
+  function getCurrentTimestamp(): string {
+    return new Date().toLocaleString("en-US", {
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    });
+  }
+
+  function addMessage() {
+    const newMessage = {
+      id: messageFeed.length,
+      host: true,
+      avatar: 48,
+      name: "Jane",
+      timestamp: `Today @ ${getCurrentTimestamp()}`,
+      message: currentMessage,
+      color: "preset-tonal-primary",
+    };
+    // Update the message feed
+    messageFeed = [...messageFeed, newMessage];
+    // Clear prompt
+    currentMessage = "";
+    // Smooth scroll to bottom
+    // Timeout prevents race condition
+    setTimeout(() => scrollChatBottom("smooth"), 0);
+  }
+
+  function onPromptKeydown(event: KeyboardEvent) {
+    if (["Enter"].includes(event.code)) {
+      event.preventDefault();
+      addMessage();
+    }
+  }
+
+  // When DOM is mounted, scroll to bottom
+  onMount(() => {
+    scrollChatBottom();
+  });
+
+  // let name = $state("");
+  // let greetMsg = $state("");
+
+  // async function greet(event: Event) {
+  //   event.preventDefault();
+  //   // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
+  //   greetMsg = await invoke("greet", { name });
+  // }
 </script>
 
-<main class="container">
-  <h1>Welcome to Tauri + Svelte</h1>
-
-  <div class="row">
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo vite" alt="Vite Logo" />
-    </a>
-    <a href="https://tauri.app" target="_blank">
-      <img src="/tauri.svg" class="logo tauri" alt="Tauri Logo" />
-    </a>
-    <a href="https://svelte.dev" target="_blank">
-      <img src="/svelte.svg" class="logo svelte-kit" alt="SvelteKit Logo" />
-    </a>
-  </div>
-  <p>Click on the Tauri, Vite, and SvelteKit logos to learn more.</p>
-
-  <form class="row" onsubmit={greet}>
-    <input id="greet-input" placeholder="Enter a name..." bind:value={name} />
-    <button type="submit">Greet</button>
-  </form>
-  <p>{greetMsg}</p>
+<main class="container w-full h-full">
+  <section class="bg-surface-100-900 w-full h-full overflow-hidden">
+    <div class="chat w-full h-full grid grid-cols-1 lg:grid-cols-[auto_1fr]">
+      <!-- Navigation -->
+      <div
+        class="hidden lg:grid grid-rows-[auto_1fr_auto] border-r-[1px] border-surface-200-800"
+      >
+        <!-- Header -->
+        <header class="border-b-[1px] border-surface-200-800 p-4">
+          <input class="input" type="search" placeholder="Search..." />
+        </header>
+        <!-- List -->
+        <div class="p-4 space-y-4 overflow-y-auto">
+          <small class="opacity-50">Contacts</small>
+          <div class="flex flex-col space-y-1">
+            {#each people as person}
+              <button
+                type="button"
+                class="card p-2 w-full flex items-center space-x-4 {person.id ===
+                currentPersonId
+                  ? 'preset-filled-primary-500'
+                  : 'bg-surface-hover-token'}"
+                onclick={() => (currentPersonId = person.id)}
+              >
+                <Avatar
+                  src="https://i.pravatar.cc/?img={person.avatar}"
+                  name={person.name}
+                  size="size-8"
+                />
+                <span class="flex-1 text-start">
+                  {person.name}
+                </span>
+              </button>
+            {/each}
+          </div>
+        </div>
+        <!-- Footer -->
+        <!-- <footer class="border-t-[1px] border-surface-200-800 p-4">(footer)</footer> -->
+      </div>
+      <!-- Chat -->
+      <div class="grid grid-row-[1fr_auto]">
+        <!-- Conversation -->
+        <section
+          bind:this={elemChat}
+          class="p-4 overflow-y-auto space-y-4 w-full"
+        >
+          {#each messageFeed as bubble}
+            {#if bubble.host === true}
+              <div class="grid grid-cols-[auto_1fr] gap-2">
+                <Avatar
+                  src="https://i.pravatar.cc/?img={bubble.avatar}"
+                  name={bubble.name}
+                  size="size-12"
+                />
+                <div class="card p-4 preset-tonal rounded-tl-none space-y-2">
+                  <header class="flex justify-between items-center">
+                    <p class="font-bold">{bubble.name}</p>
+                    <small class="opacity-50">{bubble.timestamp}</small>
+                  </header>
+                  <p>{bubble.message}</p>
+                </div>
+              </div>
+            {:else}
+              <div class="grid grid-cols-[1fr_auto] gap-2">
+                <div class="card p-4 rounded-tr-none space-y-2 {bubble.color}">
+                  <header class="flex justify-between items-center">
+                    <p class="font-bold">{bubble.name}</p>
+                    <small class="opacity-50">{bubble.timestamp}</small>
+                  </header>
+                  <p>{bubble.message}</p>
+                </div>
+                <Avatar
+                  src="https://i.pravatar.cc/?img={bubble.avatar}"
+                  name={bubble.name}
+                  size="size-12"
+                />
+              </div>
+            {/if}
+          {/each}
+        </section>
+        <!-- Prompt -->
+        <section class="border-t-[1px] border-surface-200-800 p-4">
+          <div
+            class="input-group grid-cols-[1fr_auto] divide-x divide-surface-200-800 rounded-container-token"
+          >
+            <textarea
+              value={currentMessage}
+              oninput={(e) => (currentMessage = e.currentTarget.value)}
+              class="bg-transparent border-0 ring-0"
+              name="prompt"
+              id="prompt"
+              placeholder="Write a message..."
+              rows="1"
+              onkeydown={onPromptKeydown}
+            ></textarea>
+            <button
+              class="input-group-cell {currentMessage
+                ? 'preset-filled-primary-500'
+                : 'preset-tonal'}"
+              onclick={addMessage}
+            >
+              <IconSend />
+            </button>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
 </main>
-
-<style>
-.logo.vite:hover {
-  filter: drop-shadow(0 0 2em #747bff);
-}
-
-.logo.svelte-kit:hover {
-  filter: drop-shadow(0 0 2em #ff3e00);
-}
-
-:root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
-
-  color: #0f0f0f;
-  background-color: #f6f6f6;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-}
-
-.container {
-  margin: 0;
-  padding-top: 10vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: 0.75s;
-}
-
-.logo.tauri:hover {
-  filter: drop-shadow(0 0 2em #24c8db);
-}
-
-.row {
-  display: flex;
-  justify-content: center;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-h1 {
-  text-align: center;
-}
-
-input,
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  color: #0f0f0f;
-  background-color: #ffffff;
-  transition: border-color 0.25s;
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
-}
-
-button {
-  cursor: pointer;
-}
-
-button:hover {
-  border-color: #396cd8;
-}
-button:active {
-  border-color: #396cd8;
-  background-color: #e8e8e8;
-}
-
-input,
-button {
-  outline: none;
-}
-
-#greet-input {
-  margin-right: 5px;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    color: #f6f6f6;
-    background-color: #2f2f2f;
-  }
-
-  a:hover {
-    color: #24c8db;
-  }
-
-  input,
-  button {
-    color: #ffffff;
-    background-color: #0f0f0f98;
-  }
-  button:active {
-    background-color: #0f0f0f69;
-  }
-}
-
-</style>

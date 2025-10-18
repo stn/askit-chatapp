@@ -1,11 +1,13 @@
 <script lang="ts">
   import IconSend from "@lucide/svelte/icons/send-horizontal";
   import { Avatar } from "@skeletonlabs/skeleton-svelte";
-  import { onMount } from "svelte";
+  import { onDestroy, onMount } from "svelte";
   import "../app.css";
 
-  import { invoke } from "@tauri-apps/api/core";
+  import { listen } from '@tauri-apps/api/event';
   import { writeBoard } from "tauri-plugin-askit-api";
+
+  import type { Message, BoardMessage } from "../types/chat";
 
   // Types
   interface Person {
@@ -13,6 +15,7 @@
     avatar: number;
     name: string;
   }
+
   interface MessageFeed {
     id: number;
     host: boolean;
@@ -103,25 +106,72 @@
     };
     // Update the message feed
     messageFeed = [...messageFeed, newMessage];
+    // Write to board
+    console.log("Writing to board:", currentMessage);
+    writeBoard("user_message", currentMessage);
     // Clear prompt
     currentMessage = "";
-    // Write to board
-    writeBoard("chat", currentMessage);
     // Smooth scroll to bottom
     // Timeout prevents race condition
     setTimeout(() => scrollChatBottom("smooth"), 0);
   }
 
   function onPromptKeydown(event: KeyboardEvent) {
-    if (["Enter"].includes(event.code)) {
+    if (["Enter"].includes(event.code) && event.ctrlKey) {
       event.preventDefault();
       addMessage();
     }
   }
 
+  let unlistenBoard: () => void;
+
   // When DOM is mounted, scroll to bottom
   onMount(() => {
+    listen<BoardMessage>('notify_board', (event) => {
+      console.log('Received board message:', event);
+      const boardMessage = event.payload;
+      if (boardMessage?.name !== "assistant_message" || !boardMessage?.data?.value?.content) {
+        return;
+      }
+      const newMessage = {
+        id: messageFeed.length,
+        host: false,
+        avatar: 14,
+        name: "Michael",
+        timestamp: `Today @ ${getCurrentTimestamp()}`,
+        message: boardMessage.data.value.content,
+        color: "preset-tonal-primary",
+      };
+      // Update the message feed
+      if (messageFeed.length > 0 && messageFeed[messageFeed.length - 1].host === false) {
+        const updated = [...messageFeed];
+        updated[updated.length - 1].message = boardMessage.data.value.content;
+        messageFeed = updated;
+      } else {
+        messageFeed = [...messageFeed, newMessage];
+      }
+
+      // setMessages((prev) => {
+      //   if (prev.length > 0) {
+      //     const updated = [...prev];
+      //     updated[updated.length - 1].content = boardMessage.data.value.content;
+      //     return updated;
+      //   } else {
+      //     return prev;
+      //   }
+      // });
+      setTimeout(() => scrollChatBottom("smooth"), 0);
+    }).then((unlistenFn) => {
+      unlistenBoard = unlistenFn;
+    });
+
     scrollChatBottom();
+  });
+
+  onDestroy(() => {
+    if (unlistenBoard) {
+      unlistenBoard();
+    }
   });
 
   // let name = $state("");

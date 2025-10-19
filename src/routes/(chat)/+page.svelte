@@ -3,12 +3,12 @@
   import IconCat from "@lucide/svelte/icons/cat";
   import IconCircleUserRound from "@lucide/svelte/icons/circle-user-round";
   import { onDestroy, onMount } from "svelte";
-  import "../app.css";
+  import "../../app.css";
 
   import { listen } from '@tauri-apps/api/event';
   import { writeBoard } from "tauri-plugin-askit-api";
 
-  import type { BoardMessage } from "../types/chat";
+  import type { BoardMessage } from "$lib/types/chat.ts";
 
   // Types
   interface MessageFeed {
@@ -110,69 +110,58 @@
   });
 </script>
 
-<main class="container w-screen h-screen">
-  <section class="w-screen h-screen">
-    <div class="w-screen h-screen flex flex-row">
-      <!-- Navigation -->
-      <div
-        class="hidden flex-none lg:grid grid-rows-[auto_1fr_auto] border-r-[1px] border-surface-200-800"
-      >
-      </div>
-      <!-- Chat -->
-      <div class="flex-auto grid grid-rows-[1fr_auto]">
-        <!-- Conversation -->
-        <section
-          bind:this={elemChat}
-          class="p-4 overflow-y-auto space-y-4 w-full h-full"
+<!-- Chat -->
+<div class="flex-auto grid grid-rows-[1fr_auto]">
+    <!-- Conversation -->
+    <section
+        bind:this={elemChat}
+        class="p-4 overflow-y-auto space-y-4 w-full h-full"
+    >
+        {#each messageFeed as bubble}
+        {#if bubble.host === true}
+            <div class="flex flex-row-reverse items-start gap-2">
+            <IconCircleUserRound />
+            <div class="flex-1 flex justify-end">
+                <div class="card pr-2 pl-4 preset-tonal rounded-tl-none space-y-2">
+                <p class="p-2">{bubble.message}</p>
+                </div>
+            </div>
+            </div>
+        {:else}
+            <div class="flex flex-row items-start gap-2">
+            <IconCat />
+            <div class="flex-1 flex justify-start">
+                <div class="card pl-2 pr-4 rounded-tr-none space-y-2 {bubble.color}">
+                <p class="p-2">{bubble.message}</p>
+                </div>
+            </div>
+            </div>
+        {/if}
+        {/each}
+    </section>
+    <!-- Prompt -->
+    <section class="p-4">
+        <div
+        class="flex flex-row input-group divide-x divide-surface-200-800 rounded-container-token"
         >
-          {#each messageFeed as bubble}
-            {#if bubble.host === true}
-              <div class="flex flex-row-reverse items-start gap-2">
-                <IconCircleUserRound />
-                <div class="flex-1 flex justify-end">
-                  <div class="card pr-2 pl-4 preset-tonal rounded-tl-none space-y-2">
-                    <p class="p-2">{bubble.message}</p>
-                  </div>
-                </div>
-              </div>
-            {:else}
-              <div class="flex flex-row items-start gap-2">
-                <IconCat />
-                <div class="flex-1 flex justify-start">
-                  <div class="card pl-2 pr-4 rounded-tr-none space-y-2 {bubble.color}">
-                    <p class="p-2">{bubble.message}</p>
-                  </div>
-                </div>
-              </div>
-            {/if}
-          {/each}
-        </section>
-        <!-- Prompt -->
-        <section class="p-4">
-          <div
-            class="flex flex-row input-group divide-x divide-surface-200-800 rounded-container-token"
-          >
-            <textarea
-              value={currentMessage}
-              oninput={(e) => (currentMessage = e.currentTarget.value)}
-              class="flex-1 bg-transparent border-0 ring-0 p-2"
-              name="prompt"
-              id="prompt"
-              placeholder="Write a message..."
-              rows="2"
-              onkeydown={onPromptKeydown}
-            ></textarea>
-            <button
-              class="p-1 flex-none input-group-cell {currentMessage
-                ? 'preset-filled-primary-500'
-                : 'preset-tonal'}"
-              onclick={addMessage}
-            >
-              <IconSend />
-            </button>
-          </div>
-        </section>
-      </div>
-    </div>
-  </section>
-</main>
+        <textarea
+            value={currentMessage}
+            oninput={(e) => (currentMessage = e.currentTarget.value)}
+            class="flex-1 bg-transparent border-0 ring-0 p-2"
+            name="prompt"
+            id="prompt"
+            placeholder="Write a message..."
+            rows="2"
+            onkeydown={onPromptKeydown}
+        ></textarea>
+        <button
+            class="p-1 flex-none input-group-cell {currentMessage
+            ? 'preset-filled-primary-500'
+            : 'preset-tonal'}"
+            onclick={addMessage}
+        >
+            <IconSend />
+        </button>
+        </div>
+    </section>
+</div>

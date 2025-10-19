@@ -13,8 +13,6 @@
   interface MessageFeed {
     id: number;
     host: boolean;
-    avatar: number;
-    name: string;
     timestamp: string;
     message: string;
     color: string;
@@ -42,8 +40,6 @@
     const newMessage = {
       id: messageFeed.length,
       host: true,
-      avatar: 48,
-      name: "Jane",
       timestamp: `Today @ ${getCurrentTimestamp()}`,
       message: currentMessage,
       color: "preset-tonal-primary",
@@ -80,8 +76,6 @@
       const newMessage = {
         id: messageFeed.length,
         host: false,
-        avatar: 14,
-        name: "Michael",
         timestamp: `Today @ ${getCurrentTimestamp()}`,
         message: boardMessage.data.value.content,
         color: "preset-tonal-primary",

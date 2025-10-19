@@ -3,7 +3,6 @@
   import IconCat from "@lucide/svelte/icons/cat";
   import IconCircleUserRound from "@lucide/svelte/icons/circle-user-round";
   import { onDestroy, onMount } from "svelte";
-  import "../../app.css";
 
   import { listen } from '@tauri-apps/api/event';
   import { writeBoard } from "tauri-plugin-askit-api";

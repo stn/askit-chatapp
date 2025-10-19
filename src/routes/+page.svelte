@@ -112,7 +112,7 @@
 
 <main class="container w-screen h-screen">
   <section class="w-screen h-screen">
-    <div class="chat w-screen h-screen flex flex-row">
+    <div class="w-screen h-screen flex flex-row">
       <!-- Navigation -->
       <div
         class="hidden flex-none lg:grid grid-rows-[auto_1fr_auto] border-r-[1px] border-surface-200-800"
@@ -131,7 +131,7 @@
                 <IconCircleUserRound />
                 <div class="flex-1 flex justify-end">
                   <div class="card pr-2 pl-4 preset-tonal rounded-tl-none space-y-2">
-                    <p class="rounded-lg bg-blue-100 p-2">{bubble.message}</p>
+                    <p class="p-2">{bubble.message}</p>
                   </div>
                 </div>
               </div>
@@ -140,7 +140,7 @@
                 <IconCat />
                 <div class="flex-1 flex justify-start">
                   <div class="card pl-2 pr-4 rounded-tr-none space-y-2 {bubble.color}">
-                    <p class="rounded-lg bg-gray-100 p-2">{bubble.message}</p>
+                    <p class="p-2">{bubble.message}</p>
                   </div>
                 </div>
               </div>
@@ -155,7 +155,7 @@
             <textarea
               value={currentMessage}
               oninput={(e) => (currentMessage = e.currentTarget.value)}
-              class="flex-1 bg-transparent border-1 p-2 rounded-lg"
+              class="flex-1 bg-transparent border-0 ring-0 p-2"
               name="prompt"
               id="prompt"
               placeholder="Write a message..."
@@ -163,7 +163,7 @@
               onkeydown={onPromptKeydown}
             ></textarea>
             <button
-              class="pl-2 flex-none input-group-cell {currentMessage
+              class="p-1 flex-none input-group-cell {currentMessage
                 ? 'preset-filled-primary-500'
                 : 'preset-tonal'}"
               onclick={addMessage}

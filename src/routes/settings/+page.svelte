@@ -1,20 +1,18 @@
 <script lang="ts">
   import IconSettings from "@lucide/svelte/icons/settings";
-  import IconUser from "@lucide/svelte/icons/user";
-  import IconKey from "@lucide/svelte/icons/key";
   import IconEye from "@lucide/svelte/icons/eye";
   import IconEyeOff from "@lucide/svelte/icons/eye-off";
   import { onMount } from "svelte";
   import { Store } from "@tauri-apps/plugin-store";
   import type { Settings } from "$lib/types/settings";
   import { defaultSettings } from "$lib/types/settings";
+  import { loadSettingsCmd } from "$lib/commands.ts";
 
   let store: Store | null = $state(null);
   let settings = $state<Settings>(defaultSettings);
   let isLoading = $state(false);
   let savedMessage = $state("");
   let visibleKeys = $state<{ [key: string]: boolean }>({});
-  let activeTab = $state("profile");
 
   async function getStore() {
     if (!store) {
@@ -49,6 +47,7 @@
       const storeInstance = await getStore();
       await storeInstance.set("settings", settings);
       await storeInstance.save();
+      await loadSettingsCmd();
       savedMessage = "設定を保存しました";
       setTimeout(() => (savedMessage = ""), 3000);
     } catch (error) {
@@ -57,16 +56,6 @@
     } finally {
       isLoading = false;
     }
-  }
-
-  function updateProfile(field: keyof Settings["profile"], value: string) {
-    settings = {
-      ...settings,
-      profile: {
-        ...settings.profile,
-        [field]: value,
-      },
-    };
   }
 
   function updateApiKey(service: string, value: string) {
@@ -97,8 +86,8 @@
   });
 </script>
 
-<div class="h-screen bg-background overflow-auto">
-  <div class="max-w-4xl mx-auto p-6 space-y-6">
+<div class="flex-auto h-screen bg-background overflow-auto">
+  <div class="mx-auto p-6 space-y-6">
     <div class="flex items-center gap-3 mb-6">
       <IconSettings class="h-8 w-8" />
       <h1 class="text-3xl font-bold">設定</h1>
@@ -106,54 +95,7 @@
 
     <!-- Tabs -->
     <div class="w-full">
-      <div class="grid w-full grid-cols-2 gap-2 p-1 bg-muted rounded-lg">
-        <button
-          class="flex items-center justify-center gap-2 px-3 py-2 rounded-md transition-colors {activeTab === 'profile' ? 'bg-background shadow-sm' : 'hover:bg-background/50'}"
-          onclick={() => (activeTab = "profile")}
-        >
-          <IconUser class="h-4 w-4" />
-          プロフィール
-        </button>
-        <button
-          class="flex items-center justify-center gap-2 px-3 py-2 rounded-md transition-colors {activeTab === 'api' ? 'bg-background shadow-sm' : 'hover:bg-background/50'}"
-          onclick={() => (activeTab = "api")}
-        >
-          <IconKey class="h-4 w-4" />
-          API Keys
-        </button>
-      </div>
-
-      <!-- Profile Tab -->
-      {#if activeTab === "profile"}
-        <div class="space-y-4 mt-6">
-          <div class="card p-6">
-            <div class="mb-4">
-              <h2 class="text-2xl font-semibold">ユーザー情報</h2>
-              <p class="text-sm text-muted-foreground mt-1">
-                プロフィール情報を設定してください
-              </p>
-            </div>
-            <div class="space-y-4">
-              <div class="space-y-2">
-                <label for="username" class="text-sm font-medium">
-                  ユーザー名 *
-                </label>
-                <input
-                  id="username"
-                  type="text"
-                  value={settings.profile.username}
-                  oninput={(e) => updateProfile("username", e.currentTarget.value)}
-                  placeholder="ユーザー名を入力"
-                  class="w-full px-3 py-2 bg-transparent border border-surface-400-600 rounded-md"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      {/if}
-
       <!-- API Tab -->
-      {#if activeTab === "api"}
         <div class="space-y-4 mt-6">
           <div class="card p-6">
             <div class="mb-4">
@@ -220,7 +162,6 @@
             </div>
           </div>
         </div>
-      {/if}
     </div>
 
     <div class="flex items-center justify-between">

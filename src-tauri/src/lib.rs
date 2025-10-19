@@ -1,5 +1,5 @@
-use agent_stream_kit::{ASKit, ASKitEvent, ASKitObserver, AgentData, AgentError, AgentFlow};
-use tauri::{path::BaseDirectory, AppHandle, Emitter, Manager, State};
+use agent_stream_kit::{ASKit, AgentFlow};
+use tauri::{path::BaseDirectory, AppHandle, Manager, State};
 use tauri_plugin_store::StoreExt;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
@@ -14,11 +14,6 @@ pub fn run() {
                 let askit = app_handle.state::<ASKit>().clone();
                 askit_std_agents::register_agents(&askit);
                 askit_llm_agents::register_agents(&askit);
-
-                if let Some(mut config) = askit.get_global_config("ollama_completion") {
-                    config.set("ollama_url".to_string(), "http://192.168.50.113:11434".into());
-                    askit.set_global_config("ollama_completion".to_string(), config);
-                }
 
                 load_settings(&app_handle, &askit).unwrap();
 
@@ -36,6 +31,9 @@ pub fn run() {
             });
             Ok(())
         })
+        .invoke_handler(tauri::generate_handler![
+            load_settings_cmd
+        ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
@@ -84,4 +82,9 @@ fn load_settings(app: &AppHandle, askit: &ASKit) -> Result<(), String> {
     }
 
     Ok(())
+}
+
+#[tauri::command]
+fn load_settings_cmd(app: AppHandle, askit: State<ASKit>) -> Result<(), String> {
+    load_settings(&app, &askit)
 }

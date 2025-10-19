@@ -1,6 +1,6 @@
 <script lang="ts">
   import IconSend from "@lucide/svelte/icons/send-horizontal";
-  import { Avatar } from "@skeletonlabs/skeleton-svelte";
+  import { Avatar } from "bits-ui";
   import { onDestroy, onMount } from "svelte";
   import "../app.css";
 
@@ -208,11 +208,14 @@
                   : 'bg-surface-hover-token'}"
                 onclick={() => (currentPersonId = person.id)}
               >
-                <Avatar
-                  src="https://i.pravatar.cc/?img={person.avatar}"
-                  name={person.name}
-                  size="size-8"
-                />
+                <Avatar.Root
+                  class="size-8"
+                  >
+                  <Avatar.Image
+                    src="https://i.pravatar.cc/?img={person.avatar}"
+                    alt={person.name}
+                  />
+                </Avatar.Root>
                 <span class="flex-1 text-start">
                   {person.name}
                 </span>
@@ -233,35 +236,41 @@
           {#each messageFeed as bubble}
             {#if bubble.host === true}
               <div class="flex flex-row-reverse items-start gap-2">
-                <Avatar
-                  src="https://i.pravatar.cc/?img={bubble.avatar}"
-                  name={bubble.name}
-                  size="size-12"
-                />
+                <Avatar.Root>
+                  <Avatar.Image
+                    src="https://i.pravatar.cc/?img={bubble.avatar}"
+                    alt={bubble.name}
+                    class="size-12"
+                  />
+                </Avatar.Root>
                 <div class="flex-1 flex justify-end">
-                  <div class="card p-4 preset-tonal rounded-tl-none space-y-2">
-                    <header class="flex justify-between items-center">
+                  <div class="card pr-2 pl-4 preset-tonal rounded-tl-none space-y-2">
+                    <!-- <header class="flex flex-col justify-start items-end">
                       <p class="font-bold">{bubble.name}</p>
+                    </header> -->
+                    <p class="rounded-lg bg-blue-100 p-2">{bubble.message}</p>
+                    <!-- <footer class="flex flex-col justify-start items-end">
                       <small class="opacity-50">{bubble.timestamp}</small>
-                    </header>
-                    <p>{bubble.message}</p>
+                    </footer> -->
                   </div>
                 </div>
               </div>
             {:else}
               <div class="flex flex-row items-start gap-2">
-                <Avatar
-                  src="https://i.pravatar.cc/?img={bubble.avatar}"
-                  name={bubble.name}
-                  size="size-12"
-                />
+                <Avatar.Root>
+                  <Avatar.Image
+                    src="https://i.pravatar.cc/?img={bubble.avatar}"
+                    alt={bubble.name}
+                    class="size-12"
+                  />
+                </Avatar.Root>
                 <div class="flex-1 flex justify-start">
-                  <div class="card p-4 rounded-tr-none space-y-2 {bubble.color}">
-                    <header class="flex justify-between items-center">
+                  <div class="card pl-2 pr-4 rounded-tr-none space-y-2 {bubble.color}">
+                    <!-- <header class="flex flex-col justify-start items-start">
                       <p class="font-bold">{bubble.name}</p>
                       <small class="opacity-50">{bubble.timestamp}</small>
-                    </header>
-                    <p>{bubble.message}</p>
+                    </header> -->
+                    <p class="rounded-lg bg-gray-100 p-2">{bubble.message}</p>
                   </div>
                 </div>
               </div>
@@ -269,22 +278,22 @@
           {/each}
         </section>
         <!-- Prompt -->
-        <section class="border-t-[1px] border-surface-200-800 p-4">
+        <section class="p-4">
           <div
-            class="input-group grid-cols-[1fr_auto] divide-x divide-surface-200-800 rounded-container-token"
+            class="flex flex-row input-group divide-x divide-surface-200-800 rounded-container-token"
           >
             <textarea
               value={currentMessage}
               oninput={(e) => (currentMessage = e.currentTarget.value)}
-              class="bg-transparent border-0 ring-0"
+              class="flex-1 bg-transparent border-1 p-2 rounded-lg"
               name="prompt"
               id="prompt"
               placeholder="Write a message..."
-              rows="1"
+              rows="2"
               onkeydown={onPromptKeydown}
             ></textarea>
             <button
-              class="input-group-cell {currentMessage
+              class="pl-2 flex-none input-group-cell {currentMessage
                 ? 'preset-filled-primary-500'
                 : 'preset-tonal'}"
               onclick={addMessage}

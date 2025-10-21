@@ -1,0 +1,59 @@
+{
+  "nodes": [
+    {
+      "id": "177",
+      "def_name": "core_board_in",
+      "enabled": true,
+      "config": {
+        "$board": "assistant_message"
+      },
+      "x": 735.3000000000003,
+      "y": 174.58774770508597
+    },
+    {
+      "id": "178",
+      "def_name": "core_board_out",
+      "enabled": true,
+      "config": {
+        "$board": "user_message"
+      },
+      "x": 146.24584258669896,
+      "y": 175.07028883016005
+    },
+    {
+      "id": "180",
+      "def_name": "ollama_chat",
+      "enabled": true,
+      "config": {
+        "model": "gemma3:4b",
+        "history": 6,
+        "stream": true,
+        "options": "{}"
+      },
+      "x": 444.0497567975044,
+      "y": 173.07262864505384
+    }
+  ],
+  "edges": [
+    {
+      "id": "xy-edge__178*-180message",
+      "source": "178",
+      "source_handle": "*",
+      "target": "180",
+      "target_handle": "message"
+    },
+    {
+      "id": "xy-edge__180message-177*",
+      "source": "180",
+      "source_handle": "message",
+      "target": "177",
+      "target_handle": "*"
+    }
+  ],
+  "name": "chat/simple-ollama",
+  "viewport": {
+    "x": 348.7322340884257,
+    "y": 56.23152564190741,
+    "zoom": 0.8705505632961241
+  }
+}

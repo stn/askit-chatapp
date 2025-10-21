@@ -1,0 +1,479 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 63;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0A13A7892305DCB7CC9618F1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41E7756513BD724331F51415 /* Security.framework */; };
+		248B462ED17466442065A683 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 233DD590B7FAEED17EA30CDB /* UIKit.framework */; };
+		390B7E016D6C5204CB2FDB7B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FD53B0D2EC4FCCB2DCC4FC9 /* LaunchScreen.storyboard */; };
+		41D40735824E892B00D10C08 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E57792368BCEB55E5E0491D5 /* WebKit.framework */; };
+		4E15158ADC92F04D3A91C06A /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0871818F2AADE5CFEC734FD0 /* MetalKit.framework */; };
+		5201CB7069768CD136310594 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAED2865EA18A59656B4181D /* Assets.xcassets */; };
+		57B85A539827035F6AF66D43 /* libapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD1D42C33039A30FED12690B /* libapp.a */; };
+		5BF091C184349A7544DB86E3 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 065E3FE3450BF72EC0BF7A96 /* main.mm */; };
+		A80BDA15032031A7615A6A79 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DC86D52EA0D8A6697CBDEB6 /* QuartzCore.framework */; };
+		AD8A236B03A6A3F78EBBAFD8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A13F5570BEA5113F875B2302 /* CoreGraphics.framework */; };
+		D0A79060F3875EEE29D07A71 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 9BB6D100BE0CC32A0CEF10C0 /* assets */; };
+		F751E452406B1CDF96D226B7 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE6DE835D10719014BE591F /* Metal.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		065E3FE3450BF72EC0BF7A96 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
+		0871818F2AADE5CFEC734FD0 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
+		0A1238C9689C034D8FE42209 /* bindings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bindings.h; sourceTree = "<group>"; };
+		18CB3991DC6F6C56CEBEA578 /* main.rs */ = {isa = PBXFileReference; lastKnownFileType = text; path = main.rs; sourceTree = "<group>"; };
+		233DD590B7FAEED17EA30CDB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		266071E4579A295EA0BA727F /* askit-chatapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "askit-chatapp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		41E7756513BD724331F51415 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		5FD53B0D2EC4FCCB2DCC4FC9 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		6DC86D52EA0D8A6697CBDEB6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		9BB6D100BE0CC32A0CEF10C0 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = SOURCE_ROOT; };
+		A13F5570BEA5113F875B2302 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		CEE6DE835D10719014BE591F /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
+		DB6D5DB3E711AEA08676CD23 /* lib.rs */ = {isa = PBXFileReference; lastKnownFileType = text; path = lib.rs; sourceTree = "<group>"; };
+		DD1D42C33039A30FED12690B /* libapp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libapp.a; sourceTree = "<group>"; };
+		E48EEF0D56DA5CC2DAC8CEBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		E57792368BCEB55E5E0491D5 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		EAED2865EA18A59656B4181D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F4F5112F8D313E448F0B9AB2 /* askit-chatapp_iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "askit-chatapp_iOS.entitlements"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		921D9568F9AF30F99B26DDF1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57B85A539827035F6AF66D43 /* libapp.a in Frameworks */,
+				AD8A236B03A6A3F78EBBAFD8 /* CoreGraphics.framework in Frameworks */,
+				F751E452406B1CDF96D226B7 /* Metal.framework in Frameworks */,
+				4E15158ADC92F04D3A91C06A /* MetalKit.framework in Frameworks */,
+				A80BDA15032031A7615A6A79 /* QuartzCore.framework in Frameworks */,
+				0A13A7892305DCB7CC9618F1 /* Security.framework in Frameworks */,
+				248B462ED17466442065A683 /* UIKit.framework in Frameworks */,
+				41D40735824E892B00D10C08 /* WebKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		297C0B404AD143FFDF345B61 /* Externals */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Externals;
+			sourceTree = "<group>";
+		};
+		59B2B211CCEC74EBBC0D0D90 = {
+			isa = PBXGroup;
+			children = (
+				9BB6D100BE0CC32A0CEF10C0 /* assets */,
+				EAED2865EA18A59656B4181D /* Assets.xcassets */,
+				5FD53B0D2EC4FCCB2DCC4FC9 /* LaunchScreen.storyboard */,
+				A880749C00E0AD1515E13E56 /* askit-chatapp_iOS */,
+				297C0B404AD143FFDF345B61 /* Externals */,
+				7131F5243F7A74BFBB2EC5BA /* Sources */,
+				AC5405C9C021C007B6D2AD28 /* src */,
+				F8F23410F0CC426AC81A9C1A /* Frameworks */,
+				D55DBAA81330D60388C96D63 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7131F5243F7A74BFBB2EC5BA /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				D1165A536489853036591D14 /* askit-chatapp */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		A880749C00E0AD1515E13E56 /* askit-chatapp_iOS */ = {
+			isa = PBXGroup;
+			children = (
+				F4F5112F8D313E448F0B9AB2 /* askit-chatapp_iOS.entitlements */,
+				E48EEF0D56DA5CC2DAC8CEBF /* Info.plist */,
+			);
+			path = "askit-chatapp_iOS";
+			sourceTree = "<group>";
+		};
+		AC5405C9C021C007B6D2AD28 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				DB6D5DB3E711AEA08676CD23 /* lib.rs */,
+				18CB3991DC6F6C56CEBEA578 /* main.rs */,
+			);
+			name = src;
+			path = ../../src;
+			sourceTree = "<group>";
+		};
+		C42D60871B2F9CB9E19753FA /* bindings */ = {
+			isa = PBXGroup;
+			children = (
+				0A1238C9689C034D8FE42209 /* bindings.h */,
+			);
+			path = bindings;
+			sourceTree = "<group>";
+		};
+		D1165A536489853036591D14 /* askit-chatapp */ = {
+			isa = PBXGroup;
+			children = (
+				065E3FE3450BF72EC0BF7A96 /* main.mm */,
+				C42D60871B2F9CB9E19753FA /* bindings */,
+			);
+			path = "askit-chatapp";
+			sourceTree = "<group>";
+		};
+		D55DBAA81330D60388C96D63 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				266071E4579A295EA0BA727F /* askit-chatapp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F8F23410F0CC426AC81A9C1A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A13F5570BEA5113F875B2302 /* CoreGraphics.framework */,
+				DD1D42C33039A30FED12690B /* libapp.a */,
+				CEE6DE835D10719014BE591F /* Metal.framework */,
+				0871818F2AADE5CFEC734FD0 /* MetalKit.framework */,
+				6DC86D52EA0D8A6697CBDEB6 /* QuartzCore.framework */,
+				41E7756513BD724331F51415 /* Security.framework */,
+				233DD590B7FAEED17EA30CDB /* UIKit.framework */,
+				E57792368BCEB55E5E0491D5 /* WebKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		40BFC5C0D04EDEC5F941F10A /* askit-chatapp_iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4B3232CED68D66EAC3996D16 /* Build configuration list for PBXNativeTarget "askit-chatapp_iOS" */;
+			buildPhases = (
+				36A4108649CF115E3AF188F7 /* Build Rust Code */,
+				75699ADB9F9371FCBDB90863 /* Sources */,
+				45232B8C63868A86DAE5E4D5 /* Resources */,
+				921D9568F9AF30F99B26DDF1 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "askit-chatapp_iOS";
+			packageProductDependencies = (
+			);
+			productName = "askit-chatapp_iOS";
+			productReference = 266071E4579A295EA0BA727F /* askit-chatapp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		90EE096BE4F1C3A1A656031B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+			};
+			buildConfigurationList = C5BCFEED5ED784553F02F7E8 /* Build configuration list for PBXProject "askit-chatapp" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 59B2B211CCEC74EBBC0D0D90;
+			minimizedProjectReferenceProxies = 1;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				40BFC5C0D04EDEC5F941F10A /* askit-chatapp_iOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		45232B8C63868A86DAE5E4D5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5201CB7069768CD136310594 /* Assets.xcassets in Resources */,
+				390B7E016D6C5204CB2FDB7B /* LaunchScreen.storyboard in Resources */,
+				D0A79060F3875EEE29D07A71 /* assets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		36A4108649CF115E3AF188F7 /* Build Rust Code */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Build Rust Code";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(SRCROOT)/Externals/x86_64/${CONFIGURATION}/libapp.a",
+				"$(SRCROOT)/Externals/arm64/${CONFIGURATION}/libapp.a",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export NVM_DIR=\"${HOME}/.nvm\"\n[ -s \"$NVM_DIR/nvm.sh\" ] && \\. \"$NVM_DIR/nvm.sh\"\nnpm run -- tauri ios xcode-script -v --platform ${PLATFORM_DISPLAY_NAME:?} --sdk-root ${SDKROOT:?} --framework-search-paths \"${FRAMEWORK_SEARCH_PATHS:?}\" --header-search-paths \"${HEADER_SEARCH_PATHS:?}\" --gcc-preprocessor-definitions \"${GCC_PREPROCESSOR_DEFINITIONS:-}\" --configuration ${CONFIGURATION:?} ${FORCE_COLOR} ${ARCHS:?}\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		75699ADB9F9371FCBDB90863 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5BF091C184349A7544DB86E3 /* main.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		03E6FAA592094DB561C5600A /* release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ARCHS = arm64;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "askit-chatapp_iOS/askit-chatapp_iOS.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 6GBJ74Q4QM;
+				ENABLE_BITCODE = NO;
+				"EXCLUDED_ARCHS[sdk=iphoneos*]" = x86_64;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\".\"",
+				);
+				INFOPLIST_FILE = "askit-chatapp_iOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				"LIBRARY_SEARCH_PATHS[arch=arm64]" = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Externals/arm64/$(CONFIGURATION)",
+					"$(SDKROOT)/usr/lib/swift",
+					"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
+					"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)",
+				);
+				"LIBRARY_SEARCH_PATHS[arch=x86_64]" = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Externals/x86_64/$(CONFIGURATION)",
+					"$(SDKROOT)/usr/lib/swift",
+					"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
+					"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = jp.lumilab.askit-chatapp;
+				PRODUCT_NAME = "askit-chatapp";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = arm64;
+			};
+			name = release;
+		};
+		5A78A2DB435AF212FCE00687 /* debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = debug;
+		};
+		BBDE3AE26E894D282A53F09A /* release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = release;
+		};
+		F2D765C290F9E67A3F09B2AA /* debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ARCHS = arm64;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "askit-chatapp_iOS/askit-chatapp_iOS.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 6GBJ74Q4QM;
+				ENABLE_BITCODE = NO;
+				"EXCLUDED_ARCHS[sdk=iphoneos*]" = x86_64;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\".\"",
+				);
+				INFOPLIST_FILE = "askit-chatapp_iOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				"LIBRARY_SEARCH_PATHS[arch=arm64]" = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Externals/arm64/$(CONFIGURATION)",
+					"$(SDKROOT)/usr/lib/swift",
+					"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
+					"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)",
+				);
+				"LIBRARY_SEARCH_PATHS[arch=x86_64]" = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Externals/x86_64/$(CONFIGURATION)",
+					"$(SDKROOT)/usr/lib/swift",
+					"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
+					"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = jp.lumilab.askit-chatapp;
+				PRODUCT_NAME = "askit-chatapp";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = arm64;
+			};
+			name = debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4B3232CED68D66EAC3996D16 /* Build configuration list for PBXNativeTarget "askit-chatapp_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2D765C290F9E67A3F09B2AA /* debug */,
+				03E6FAA592094DB561C5600A /* release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = debug;
+		};
+		C5BCFEED5ED784553F02F7E8 /* Build configuration list for PBXProject "askit-chatapp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5A78A2DB435AF212FCE00687 /* debug */,
+				BBDE3AE26E894D282A53F09A /* release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 90EE096BE4F1C3A1A656031B /* Project object */;
+}

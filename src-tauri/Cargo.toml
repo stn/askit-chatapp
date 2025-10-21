@@ -30,4 +30,5 @@ tauri-plugin-store = "2"
 
 [patch.crates-io]
 agent-stream-kit = { path = "../../agent-stream-kit/agent-stream-kit" }
+askit-llm-agents = { path = "../../agent-stream-kit/askit-llm-agents" }
 tauri-plugin-askit = { path = "../../tauri-plugin-askit" }

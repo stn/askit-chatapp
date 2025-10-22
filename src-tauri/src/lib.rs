@@ -21,6 +21,8 @@ pub fn run() {
                     .path()
                     .resolve(
                         "resources/flows/chat_simple-ollama.json",
+                        // "resources/flows/chat_simple-openai.json",
+                        // "resources/flows/chat_simple-sakura.json",
                         BaseDirectory::Resource,
                     )
                     .unwrap();

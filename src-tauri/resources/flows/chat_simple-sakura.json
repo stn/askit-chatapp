@@ -1,0 +1,59 @@
+{
+  "nodes": [
+    {
+      "id": "162",
+      "def_name": "core_board_in",
+      "enabled": true,
+      "config": {
+        "$board": "assistant_message"
+      },
+      "x": 901.69476168826,
+      "y": 339.9167157786357
+    },
+    {
+      "id": "163",
+      "def_name": "core_board_out",
+      "enabled": true,
+      "config": {
+        "$board": "user_message"
+      },
+      "x": 306.2458425866989,
+      "y": 335.07028883016005
+    },
+    {
+      "id": "167",
+      "def_name": "sakura_ai_chat",
+      "enabled": true,
+      "config": {
+        "model": "gpt-oss-120b",
+        "history": 6,
+        "stream": true,
+        "options": "{}"
+      },
+      "x": 597.3927474283265,
+      "y": 334.8937218615577
+    }
+  ],
+  "edges": [
+    {
+      "id": "xy-edge__163*-167message",
+      "source": "163",
+      "source_handle": "*",
+      "target": "167",
+      "target_handle": "message"
+    },
+    {
+      "id": "xy-edge__167message-162*",
+      "source": "167",
+      "source_handle": "message",
+      "target": "162",
+      "target_handle": "*"
+    }
+  ],
+  "name": "chat/simple-sakura",
+  "viewport": {
+    "x": 306.077702624056,
+    "y": 14.474404971514332,
+    "zoom": 0.6896804609135297
+  }
+}

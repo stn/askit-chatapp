@@ -1,0 +1,59 @@
+{
+  "nodes": [
+    {
+      "id": "155",
+      "def_name": "core_board_in",
+      "enabled": true,
+      "config": {
+        "$board": "assistant_message"
+      },
+      "x": 821.69476168826,
+      "y": 259.9167157786357
+    },
+    {
+      "id": "156",
+      "def_name": "core_board_out",
+      "enabled": true,
+      "config": {
+        "$board": "user_message"
+      },
+      "x": 226.24584258669896,
+      "y": 255.07028883016005
+    },
+    {
+      "id": "160",
+      "def_name": "openai_responses",
+      "enabled": true,
+      "config": {
+        "model": "gpt-5-nano",
+        "history": 4,
+        "stream": true,
+        "options": "{}"
+      },
+      "x": 520.2653110062049,
+      "y": 263.1879676158953
+    }
+  ],
+  "edges": [
+    {
+      "id": "xy-edge__156*-160message",
+      "source": "156",
+      "source_handle": "*",
+      "target": "160",
+      "target_handle": "message"
+    },
+    {
+      "id": "xy-edge__160message-155*",
+      "source": "160",
+      "source_handle": "message",
+      "target": "155",
+      "target_handle": "*"
+    }
+  ],
+  "name": "chat/simple-openai",
+  "viewport": {
+    "x": 358.6535265890947,
+    "y": 69.35037714117732,
+    "zoom": 0.7835362380695416
+  }
+}

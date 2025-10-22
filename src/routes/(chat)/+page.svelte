@@ -7,16 +7,8 @@
   import { listen } from '@tauri-apps/api/event';
   import { writeBoard } from "tauri-plugin-askit-api";
 
-  import type { BoardMessage } from "$lib/types/chat.ts";
-
-  // Types
-  interface MessageFeed {
-    id: number;
-    host: boolean;
-    timestamp: string;
-    message: string;
-    color: string;
-  }
+  import type { BoardMessage, MessageFeed } from "$lib/types/chat.ts";
+  import Message from "$lib/components/message.svelte";
 
   let elemChat: HTMLElement;
 
@@ -111,25 +103,7 @@
         class="p-4 overflow-y-auto space-y-4 w-full h-full"
     >
         {#each messageFeed as bubble}
-        {#if bubble.host === true}
-            <div class="flex flex-row-reverse items-start gap-2">
-            <IconCircleUserRound />
-            <div class="flex-1 flex justify-end">
-                <div class="card pr-2 pl-4 preset-tonal rounded-tl-none space-y-2">
-                <p class="p-2">{bubble.message}</p>
-                </div>
-            </div>
-            </div>
-        {:else}
-            <div class="flex flex-row items-start gap-2">
-            <IconCat />
-            <div class="flex-1 flex justify-start">
-                <div class="card pl-2 pr-4 rounded-tr-none space-y-2 {bubble.color}">
-                <p class="p-2">{bubble.message}</p>
-                </div>
-            </div>
-            </div>
-        {/if}
+          <Message message={bubble} />
         {/each}
     </section>
     <!-- Prompt -->

@@ -5,9 +5,9 @@
   let { children } = $props();
 </script>
 
-<main class="container w-screen h-screen">
-  <section class="w-screen h-screen">
-    <div class="w-screen h-screen flex flex-row">
+<main class="container w-screen h-[100dvh]">
+  <section class="w-screen h-[100dvh]">
+    <div class="w-screen h-[100dvh] flex flex-row">
         <Navigation />
         {@render children()}
     </div>

@@ -24,11 +24,6 @@ askit-std-agents = "0.3"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 tauri = { version = "2", features = [] }
-tauri-plugin-askit = "0.1"
+tauri-plugin-askit = "0.2"
 tauri-plugin-opener = "2"
 tauri-plugin-store = "2"
-
-[patch.crates-io]
-agent-stream-kit = { path = "../../agent-stream-kit/agent-stream-kit" }
-askit-llm-agents = { path = "../../agent-stream-kit/askit-llm-agents" }
-tauri-plugin-askit = { path = "../../tauri-plugin-askit" }
